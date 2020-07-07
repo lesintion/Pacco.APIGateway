@@ -1,0 +1,45 @@
+﻿# This Deployment manifest defines:
+# - single-replica deployment of the container image, with label "app: dotnet-guestbook-frontend"
+# - Pod exposes port 8080
+# - specify PORT environment variable to the container process
+# Syntax reference https://kubernetes.io/docs/concepts/configuration/overview/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+  labels:
+    app: api-gateway
+    service: api-gateway
+    version: v1
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-gateway
+      service: api-gateway
+      version: v1
+
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+        service: api-gateway
+        version: v1
+
+    spec:
+      containers:
+      - image: pacco-api-gateway:latest
+        name: api-gateway
+        ports:
+        - name: http-server
+          containerPort: 80
+        env:
+          - name: ASPNETCORE_URLS
+            value: http://*:80
+          - name: ASPNETCORE_ENVIRONMENT
+            value: k8s
+          - name: NTRADA_CONFIG
+            value: ntrada-async.k8s.yml
+        resources: {}
+      restartPolicy: Always

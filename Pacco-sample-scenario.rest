@@ -19,7 +19,7 @@ Content-Type: application/json
   "email": "pacco-user1@mailinator.com",
   "password": "secret"
 }
-
+###
 @accessToken = {{sign_in.response.body.$.accessToken}}
 
 ### Get your user account details
@@ -52,7 +52,7 @@ Content-Type: application/json
   "name": "Parcel #1",
   "description": "My parcel #1"
 }
-
+###
 @parcelId = {{add_parcel.response.headers.Resource-ID}}
 
 ### Get your parcels
@@ -71,7 +71,7 @@ Content-Type: application/json
 
 {
 }
-
+###
 @orderId = {{create_order.response.headers.Resource-ID}}
 
 ### Get your orders
@@ -105,7 +105,7 @@ Content-Type: application/json
   "pricePerService": 100,
   "variants": 1
 }
-
+###
 @vehicleId = {{add_vehicle.response.headers.Resource-ID}}
 
 ### Get a newly added vehicle
@@ -165,7 +165,7 @@ Content-Type: application/json
   "description": "Delivery description",
   "dateTime": "{{deliveryDate}}"
 }
-
+###
 @deliveryId = {{start_delivery.response.headers.Resource-ID}}
 
 
